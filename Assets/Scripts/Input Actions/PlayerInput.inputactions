@@ -49,6 +49,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "RArrowKey",
+                    "type": "Button",
+                    "id": "6c850dd1-dc86-4340-b2c1-1f6b69c5f7dc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LArrowKey",
+                    "type": "Button",
+                    "id": "27a8dcbe-d18d-47e0-987f-85c9452a0375",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UArrowKey",
+                    "type": "Button",
+                    "id": "fa512e09-3b23-4d2e-812c-77459c549b02",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -104,6 +131,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpaceButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a6c466ae-164f-4677-8260-5ad8b7beadcc",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RArrowKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "690b927a-8c0e-496b-8301-7406e41b950d",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LArrowKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ccb7bb98-c9ec-4651-b0fc-3d59c1206b91",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UArrowKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

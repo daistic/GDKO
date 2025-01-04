@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [Header("Player")]
+    public GameObject player;
     public PlayerController playerController;
 
     [Header("Characters")]
@@ -25,6 +26,9 @@ public class GameManager : MonoBehaviour
 
     private void findStuff()
     {
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
     }
+
+
 }

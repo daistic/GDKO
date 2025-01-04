@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DialogTrigger : MonoBehaviour
 {
@@ -10,51 +11,58 @@ public class DialogTrigger : MonoBehaviour
         dialog = dialogObject.GetComponent<Dialog>();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("mak");
+            GameManager.Instance.playerController.playerInput.Player.SpaceButton.performed += Talk;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            GameManager.Instance.playerController.playerInput.Player.SpaceButton.performed -= Talk;
+            if (GameManager.Instance.dialogCoroutine != null) StopCoroutine(GameManager.Instance.dialogCoroutine);
+            dialogObject.SetActive(false);
+        }
+    }
 
-            if (GameManager.Instance.playerController.isSpacebarPressed)
-            {
-                Debug.Log("detectes");
-            }
+    private void Talk(InputAction.CallbackContext ctx)
+    {
+        if (!dialogObject.activeSelf)
+        {
+            dialogObject.SetActive(true);
+        }
 
-            if (!dialogObject.activeSelf && GameManager.Instance.playerController.isSpacebarPressed)
-            {
-                dialogObject.SetActive(true);
-            }
+        else
+        {
+            Debug.Log(dialog.isPlaying);
 
-            if (dialogObject.activeSelf && GameManager.Instance.playerController.isSpacebarPressed)
+            if (!dialog.isPlaying)
             {
-                if (!dialog.isPlaying)
+                if (dialog.isLastSentence())
                 {
-                    if (dialog.isLastSentence())
-                    {
-                        dialogObject.SetActive(false);
-                    }
+                    dialogObject.SetActive(false);
 
-                    else
+                    if (dialog.isEventDialog())
                     {
-                        dialog.playNextLine();
+                        string eventName = dialog.eventName();
+                        EventManager.Instance.invokeEvent(eventName);
                     }
                 }
 
                 else
                 {
-                    dialog.FinishSentence();
+                    dialog.playNextLine();
                 }
-            } 
-        }
-    }
+            }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            StopCoroutine(GameManager.Instance.dialogCoroutine);
-            dialogObject.SetActive(false);
+            else
+            {
+                Debug.Log("hah2");
+                dialog.FinishSentence();
+            }
         }
     }
 }

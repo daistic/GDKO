@@ -7,8 +7,12 @@ public class DialogScriptable : ScriptableObject
 {
     [TextArea(1, 5)]
     [SerializeField] List<string> lines = new List<string>();
-    [SerializeField] UnityEvent dialogEvent;
     [SerializeField] bool isEventDialog;
+    [SerializeField] string eventName;
 
     public List<string> getLines() { return lines; }
+
+    public bool getIsEventDialog () { return isEventDialog; }
+    
+    public string getEventName () { return eventName; }
 }

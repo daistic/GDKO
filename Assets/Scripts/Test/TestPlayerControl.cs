@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class TestPlayerControl : MonoBehaviour
 {
     [Header("Input Action")]
     private Rigidbody2D playerRigidbody;
@@ -24,6 +24,17 @@ public class PlayerController : MonoBehaviour
         playerInput.Player.Enable();
     }
 
+    private void OnEnable()
+    {
+        playerInput.Player.RArrowKey.performed += MoveRight;
+        playerInput.Player.RArrowKey.canceled += MoveRight;
+
+        playerInput.Player.LArrowKey.performed += MoveLeft;
+        playerInput.Player.LArrowKey.canceled += MoveLeft;
+
+        playerInput.Player.UArrowKey.performed += Jump;
+    }
+
     private void FixedUpdate()
     {
         if (isMovingRight && playerRigidbody.linearVelocityX < maxVelocity)
@@ -39,8 +50,10 @@ public class PlayerController : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext ctx)
     {
+        Debug.Log(ctx);
         if (ctx.performed)
         {
+            Debug.Log(jumpForce);
             playerRigidbody.AddForceY(jumpForce);
         }
     }
@@ -61,6 +74,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveLeft(InputAction.CallbackContext ctx)
     {
+        Debug.Log(ctx);
         if (ctx.performed)
         {
             isMovingLeft = true;

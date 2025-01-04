@@ -14,5 +14,13 @@ public class UIManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
     #endregion
+
+    [Header("Boolean Check")]
+    public bool isMoveRightActivated = false;
     
+    public void toggleMoveRight()
+    {
+        GameManager.Instance.playerController.handleMoveRight(isMoveRightActivated);
+        isMoveRightActivated = true;
+    }
 }

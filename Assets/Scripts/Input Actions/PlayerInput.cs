@@ -71,6 +71,33 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RArrowKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c850dd1-dc86-4340-b2c1-1f6b69c5f7dc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LArrowKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""27a8dcbe-d18d-47e0-987f-85c9452a0375"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UArrowKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""fa512e09-3b23-4d2e-812c-77459c549b02"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -128,6 +155,39 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""SpaceButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6c466ae-164f-4677-8260-5ad8b7beadcc"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RArrowKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""690b927a-8c0e-496b-8301-7406e41b950d"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LArrowKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ccb7bb98-c9ec-4651-b0fc-3d59c1206b91"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UArrowKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -141,6 +201,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_WButton = m_Player.FindAction("WButton", throwIfNotFound: true);
         m_Player_SButton = m_Player.FindAction("SButton", throwIfNotFound: true);
         m_Player_SpaceButton = m_Player.FindAction("SpaceButton", throwIfNotFound: true);
+        m_Player_RArrowKey = m_Player.FindAction("RArrowKey", throwIfNotFound: true);
+        m_Player_LArrowKey = m_Player.FindAction("LArrowKey", throwIfNotFound: true);
+        m_Player_UArrowKey = m_Player.FindAction("UArrowKey", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -212,6 +275,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_WButton;
     private readonly InputAction m_Player_SButton;
     private readonly InputAction m_Player_SpaceButton;
+    private readonly InputAction m_Player_RArrowKey;
+    private readonly InputAction m_Player_LArrowKey;
+    private readonly InputAction m_Player_UArrowKey;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -221,6 +287,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @WButton => m_Wrapper.m_Player_WButton;
         public InputAction @SButton => m_Wrapper.m_Player_SButton;
         public InputAction @SpaceButton => m_Wrapper.m_Player_SpaceButton;
+        public InputAction @RArrowKey => m_Wrapper.m_Player_RArrowKey;
+        public InputAction @LArrowKey => m_Wrapper.m_Player_LArrowKey;
+        public InputAction @UArrowKey => m_Wrapper.m_Player_UArrowKey;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -245,6 +314,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SpaceButton.started += instance.OnSpaceButton;
             @SpaceButton.performed += instance.OnSpaceButton;
             @SpaceButton.canceled += instance.OnSpaceButton;
+            @RArrowKey.started += instance.OnRArrowKey;
+            @RArrowKey.performed += instance.OnRArrowKey;
+            @RArrowKey.canceled += instance.OnRArrowKey;
+            @LArrowKey.started += instance.OnLArrowKey;
+            @LArrowKey.performed += instance.OnLArrowKey;
+            @LArrowKey.canceled += instance.OnLArrowKey;
+            @UArrowKey.started += instance.OnUArrowKey;
+            @UArrowKey.performed += instance.OnUArrowKey;
+            @UArrowKey.canceled += instance.OnUArrowKey;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -264,6 +342,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SpaceButton.started -= instance.OnSpaceButton;
             @SpaceButton.performed -= instance.OnSpaceButton;
             @SpaceButton.canceled -= instance.OnSpaceButton;
+            @RArrowKey.started -= instance.OnRArrowKey;
+            @RArrowKey.performed -= instance.OnRArrowKey;
+            @RArrowKey.canceled -= instance.OnRArrowKey;
+            @LArrowKey.started -= instance.OnLArrowKey;
+            @LArrowKey.performed -= instance.OnLArrowKey;
+            @LArrowKey.canceled -= instance.OnLArrowKey;
+            @UArrowKey.started -= instance.OnUArrowKey;
+            @UArrowKey.performed -= instance.OnUArrowKey;
+            @UArrowKey.canceled -= instance.OnUArrowKey;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -288,5 +375,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnWButton(InputAction.CallbackContext context);
         void OnSButton(InputAction.CallbackContext context);
         void OnSpaceButton(InputAction.CallbackContext context);
+        void OnRArrowKey(InputAction.CallbackContext context);
+        void OnLArrowKey(InputAction.CallbackContext context);
+        void OnUArrowKey(InputAction.CallbackContext context);
     }
 }

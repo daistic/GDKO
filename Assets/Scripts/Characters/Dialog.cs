@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class Dialog : MonoBehaviour
 {
-    [SerializeField] TextMesh dialogText;
+    [SerializeField] TextMeshPro dialogText;
     [SerializeField] DialogScriptable dialogScript;
     public float typingSpeed = 0.05f;
     public bool isPlaying;
@@ -12,7 +13,7 @@ public class Dialog : MonoBehaviour
 
     private void OnEnable()
     {
-        dialogText = GetComponent<TextMesh>();
+        dialogText = GetComponent<TextMeshPro>();
         playDialog();
     }
 
@@ -29,6 +30,7 @@ public class Dialog : MonoBehaviour
 
     public void FinishSentence()
     {
+        Debug.Log("hah");
         if (GameManager.Instance.dialogCoroutine != null)
         {
             StopCoroutine(GameManager.Instance.dialogCoroutine);
@@ -41,6 +43,16 @@ public class Dialog : MonoBehaviour
     public bool isLastSentence()
     {
         return currentLineIndex + 1 == dialogScript.getLines().Count;
+    }
+
+    public bool isEventDialog()
+    {
+        return dialogScript.getIsEventDialog();
+    }
+
+    public string eventName()
+    {
+        return dialogScript.getEventName();
     }
 
     private IEnumerator TypeText(string text)
