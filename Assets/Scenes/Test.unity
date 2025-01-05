@@ -822,7 +822,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1545581217}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TestUI, Assembly-CSharp
         m_MethodName: testClick
         m_Mode: 1
@@ -917,7 +917,6 @@ GameObject:
   - component: {fileID: 1545581215}
   - component: {fileID: 1545581214}
   - component: {fileID: 1545581213}
-  - component: {fileID: 1545581217}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1008,19 +1007,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1545581217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1545581212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 317db7632e9656e4ea445223e1120041, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 0}
 --- !u!1 &1590541360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,6 +1018,7 @@ GameObject:
   - component: {fileID: 1590541361}
   - component: {fileID: 1590541362}
   - component: {fileID: 1590541363}
+  - component: {fileID: 1590541364}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -1047,13 +1034,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590541360}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.92, y: 0.37, z: 0.03835824}
+  m_LocalRotation: {x: 0, y: 0, z: 0.684038, w: 0.7294464}
+  m_LocalPosition: {x: -13.61, y: 0.69, z: 0.03835824}
   m_LocalScale: {x: 0.55, y: 4.93, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1214341772}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 86.32}
 --- !u!212 &1590541362
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1155,6 +1142,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &1590541364
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590541360}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 00b7e5232d323634c875ccacb91e15aa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1745700963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1303,8 +1312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1590541360}
-  transformHeight: 3
-  transformSpeed: 0.5
+  doorAnimator: {fileID: 0}
 --- !u!1 &1831004969
 GameObject:
   m_ObjectHideFlags: 0

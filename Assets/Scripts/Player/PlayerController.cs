@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
 
     private void MoveRight(InputAction.CallbackContext ctx)
     {
-        Debug.Log(ctx);
         if (ctx.performed)
         {
             isMovingRight = true;
@@ -84,6 +83,21 @@ public class PlayerController : MonoBehaviour
         {
             playerInput.Player.RArrowKey.performed -= MoveRight;
             playerInput.Player.RArrowKey.canceled -= MoveRight;
+        }
+    }
+
+    public void handleMoveLeft(bool isMoveLeftActivated)
+    {
+        if (!isMoveLeftActivated)
+        {
+            playerInput.Player.LArrowKey.performed += MoveLeft;
+            playerInput.Player.LArrowKey.canceled += MoveLeft;
+        }
+
+        else
+        {
+            playerInput.Player.LArrowKey.performed -= MoveLeft;
+            playerInput.Player.LArrowKey.canceled -= MoveLeft;
         }
     }
 }
