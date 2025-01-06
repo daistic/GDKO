@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -20,6 +19,7 @@ public class GameManager : MonoBehaviour
     [Header("Player")]
     public GameObject player;
     public PlayerController playerController;
+    public Vector3 lastSpawnPoint;
 
     [Header("Characters")]
     public Coroutine dialogCoroutine;
@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
+        lastSpawnPoint = player.transform.position;
     }
 
 

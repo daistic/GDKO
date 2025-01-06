@@ -37,7 +37,6 @@ public class DialogTrigger : MonoBehaviour
 
         else
         {
-            Debug.Log(dialog.isPlaying);
 
             if (!dialog.isPlaying)
             {
