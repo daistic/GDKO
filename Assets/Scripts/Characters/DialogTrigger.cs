@@ -4,7 +4,9 @@ using UnityEngine.InputSystem;
 public class DialogTrigger : MonoBehaviour
 {
     [SerializeField] GameObject dialogObject;
-    [SerializeField] Dialog dialog;
+    Dialog dialog;
+    [SerializeField] GameObject speechBubble;
+    [SerializeField] GameObject promptObject;
 
     private void OnEnable()
     {
@@ -16,6 +18,7 @@ public class DialogTrigger : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             GameManager.Instance.playerController.playerInput.Player.SpaceButton.performed += Talk;
+            promptObject?.SetActive(true);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -25,6 +28,8 @@ public class DialogTrigger : MonoBehaviour
             GameManager.Instance.playerController.playerInput.Player.SpaceButton.performed -= Talk;
             if (GameManager.Instance.dialogCoroutine != null) StopCoroutine(GameManager.Instance.dialogCoroutine);
             dialogObject.SetActive(false);
+            promptObject?.SetActive(false);
+            if (speechBubble != null) speechBubble.SetActive(false);
         }
     }
 
@@ -32,6 +37,7 @@ public class DialogTrigger : MonoBehaviour
     {
         if (!dialogObject.activeSelf)
         {
+            if (speechBubble != null) speechBubble.SetActive(true);
             dialogObject.SetActive(true);
         }
 
@@ -43,6 +49,7 @@ public class DialogTrigger : MonoBehaviour
                 if (dialog.isLastSentence())
                 {
                     dialogObject.SetActive(false);
+                    if (speechBubble != null) speechBubble.SetActive(false);
 
                     if (dialog.isEventDialog())
                     {
@@ -59,7 +66,6 @@ public class DialogTrigger : MonoBehaviour
 
             else
             {
-                Debug.Log("hah2");
                 dialog.FinishSentence();
             }
         }

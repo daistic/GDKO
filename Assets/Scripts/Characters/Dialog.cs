@@ -30,7 +30,6 @@ public class Dialog : MonoBehaviour
 
     public void FinishSentence()
     {
-        Debug.Log("hah");
         if (GameManager.Instance.dialogCoroutine != null)
         {
             StopCoroutine(GameManager.Instance.dialogCoroutine);

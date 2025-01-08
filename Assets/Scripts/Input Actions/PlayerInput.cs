@@ -28,42 +28,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             ""id"": ""2b80ceaa-2059-4ac3-8c34-3259f803a9d6"",
             ""actions"": [
                 {
-                    ""name"": ""Dbutton"",
-                    ""type"": ""Button"",
-                    ""id"": ""2103007a-2db1-4705-a1d3-79b4da8a61fd"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""AButton"",
-                    ""type"": ""Button"",
-                    ""id"": ""2ecd1552-b42c-4c7c-beae-a20aca2ae5c6"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""WButton"",
-                    ""type"": ""Button"",
-                    ""id"": ""a77d3856-22fa-43c8-b232-f8bec1f72886"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SButton"",
-                    ""type"": ""Button"",
-                    ""id"": ""06e23270-1b0b-41d6-b42a-acbda80e8adb"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""SpaceButton"",
                     ""type"": ""Button"",
                     ""id"": ""6c9ccd32-9a37-44c3-b786-e2c1a60527d4"",
@@ -98,53 +62,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""05aabbb1-47e2-47b4-9f43-61bc221eea39"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""14523f19-b563-4040-90fb-472367e4ab78"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dbutton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f66ee96b-f5c5-4a74-adc0-0725d75c90b0"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2aeb5ace-172a-446f-b220-e0ab81adfccd"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""WButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cb8e2ddf-9c74-4439-a57d-8b0c33b04bf8"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""cd8d57d3-7f37-49fd-9d0c-9d688c9f986f"",
@@ -188,6 +117,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""UArrowKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eea77046-46a4-4844-9af7-437d1b658d1f"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -196,14 +136,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Dbutton = m_Player.FindAction("Dbutton", throwIfNotFound: true);
-        m_Player_AButton = m_Player.FindAction("AButton", throwIfNotFound: true);
-        m_Player_WButton = m_Player.FindAction("WButton", throwIfNotFound: true);
-        m_Player_SButton = m_Player.FindAction("SButton", throwIfNotFound: true);
         m_Player_SpaceButton = m_Player.FindAction("SpaceButton", throwIfNotFound: true);
         m_Player_RArrowKey = m_Player.FindAction("RArrowKey", throwIfNotFound: true);
         m_Player_LArrowKey = m_Player.FindAction("LArrowKey", throwIfNotFound: true);
         m_Player_UArrowKey = m_Player.FindAction("UArrowKey", throwIfNotFound: true);
+        m_Player_QKey = m_Player.FindAction("QKey", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -270,26 +207,20 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_Dbutton;
-    private readonly InputAction m_Player_AButton;
-    private readonly InputAction m_Player_WButton;
-    private readonly InputAction m_Player_SButton;
     private readonly InputAction m_Player_SpaceButton;
     private readonly InputAction m_Player_RArrowKey;
     private readonly InputAction m_Player_LArrowKey;
     private readonly InputAction m_Player_UArrowKey;
+    private readonly InputAction m_Player_QKey;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Dbutton => m_Wrapper.m_Player_Dbutton;
-        public InputAction @AButton => m_Wrapper.m_Player_AButton;
-        public InputAction @WButton => m_Wrapper.m_Player_WButton;
-        public InputAction @SButton => m_Wrapper.m_Player_SButton;
         public InputAction @SpaceButton => m_Wrapper.m_Player_SpaceButton;
         public InputAction @RArrowKey => m_Wrapper.m_Player_RArrowKey;
         public InputAction @LArrowKey => m_Wrapper.m_Player_LArrowKey;
         public InputAction @UArrowKey => m_Wrapper.m_Player_UArrowKey;
+        public InputAction @QKey => m_Wrapper.m_Player_QKey;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -299,18 +230,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-            @Dbutton.started += instance.OnDbutton;
-            @Dbutton.performed += instance.OnDbutton;
-            @Dbutton.canceled += instance.OnDbutton;
-            @AButton.started += instance.OnAButton;
-            @AButton.performed += instance.OnAButton;
-            @AButton.canceled += instance.OnAButton;
-            @WButton.started += instance.OnWButton;
-            @WButton.performed += instance.OnWButton;
-            @WButton.canceled += instance.OnWButton;
-            @SButton.started += instance.OnSButton;
-            @SButton.performed += instance.OnSButton;
-            @SButton.canceled += instance.OnSButton;
             @SpaceButton.started += instance.OnSpaceButton;
             @SpaceButton.performed += instance.OnSpaceButton;
             @SpaceButton.canceled += instance.OnSpaceButton;
@@ -323,22 +242,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @UArrowKey.started += instance.OnUArrowKey;
             @UArrowKey.performed += instance.OnUArrowKey;
             @UArrowKey.canceled += instance.OnUArrowKey;
+            @QKey.started += instance.OnQKey;
+            @QKey.performed += instance.OnQKey;
+            @QKey.canceled += instance.OnQKey;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
         {
-            @Dbutton.started -= instance.OnDbutton;
-            @Dbutton.performed -= instance.OnDbutton;
-            @Dbutton.canceled -= instance.OnDbutton;
-            @AButton.started -= instance.OnAButton;
-            @AButton.performed -= instance.OnAButton;
-            @AButton.canceled -= instance.OnAButton;
-            @WButton.started -= instance.OnWButton;
-            @WButton.performed -= instance.OnWButton;
-            @WButton.canceled -= instance.OnWButton;
-            @SButton.started -= instance.OnSButton;
-            @SButton.performed -= instance.OnSButton;
-            @SButton.canceled -= instance.OnSButton;
             @SpaceButton.started -= instance.OnSpaceButton;
             @SpaceButton.performed -= instance.OnSpaceButton;
             @SpaceButton.canceled -= instance.OnSpaceButton;
@@ -351,6 +261,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @UArrowKey.started -= instance.OnUArrowKey;
             @UArrowKey.performed -= instance.OnUArrowKey;
             @UArrowKey.canceled -= instance.OnUArrowKey;
+            @QKey.started -= instance.OnQKey;
+            @QKey.performed -= instance.OnQKey;
+            @QKey.canceled -= instance.OnQKey;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -370,13 +283,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public PlayerActions @Player => new PlayerActions(this);
     public interface IPlayerActions
     {
-        void OnDbutton(InputAction.CallbackContext context);
-        void OnAButton(InputAction.CallbackContext context);
-        void OnWButton(InputAction.CallbackContext context);
-        void OnSButton(InputAction.CallbackContext context);
         void OnSpaceButton(InputAction.CallbackContext context);
         void OnRArrowKey(InputAction.CallbackContext context);
         void OnLArrowKey(InputAction.CallbackContext context);
         void OnUArrowKey(InputAction.CallbackContext context);
+        void OnQKey(InputAction.CallbackContext context);
     }
 }

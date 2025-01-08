@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class BadBlock : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 1;
-    public float deathTime = 3;
+    [SerializeField] float moveSpeed;
+    [SerializeField] float deathTime;
+    [SerializeField] float revealTime = 1;
+    bool startMoving = false;
 
     private void OnEnable()
     {
@@ -26,11 +28,16 @@ public class BadBlock : MonoBehaviour
 
     private void FixedUpdate()
     {
-        this.transform.position += Vector3.down * moveSpeed;
+        if (startMoving)
+        {
+            this.transform.position += Vector3.down * moveSpeed;
+        }
     }
 
     private IEnumerator DeathCountdown()
     {
+        yield return new WaitForSeconds(revealTime);
+        startMoving = true;
         yield return new WaitForSeconds(deathTime);
         Destroy(this.gameObject);
     }

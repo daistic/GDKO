@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -24,12 +25,18 @@ public class GameManager : MonoBehaviour
     [Header("Characters")]
     public Coroutine dialogCoroutine;
 
+    [Header("Logic Check")]
+    public int currentMemSlot = 2;
+    public int maxMemSlot = 2;
+
+    [Header("Virtual Cameras")]
+    [SerializeField] CinemachineCamera followCamera;
+    [SerializeField] CinemachineCamera jcCamera;
+
     private void findStuff()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
         lastSpawnPoint = player.transform.position;
     }
-
-
 }
