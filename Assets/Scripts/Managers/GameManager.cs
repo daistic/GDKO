@@ -30,8 +30,7 @@ public class GameManager : MonoBehaviour
     public int maxMemSlot = 2;
 
     [Header("Virtual Cameras")]
-    [SerializeField] CinemachineCamera followCamera;
-    [SerializeField] CinemachineCamera jcCamera;
+    public CinemachineCamera defaultCamera;
 
     private void findStuff()
     {

@@ -3,10 +3,15 @@ using UnityEngine;
 
 public class CameraTrigger : MonoBehaviour
 {
-    [SerializeField] CinemachineCamera defaultCamera;
-    [SerializeField] CinemachineCamera newCamera;  
+    [SerializeField] CinemachineCamera newCamera;
 
+    CinemachineCamera defaultCamera;
     CinemachineBrain brain;
+
+    private void Start()
+    {
+        defaultCamera = GameManager.Instance.defaultCamera;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
