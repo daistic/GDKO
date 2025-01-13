@@ -1,12 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class DialogTrigger : MonoBehaviour
 {
     [SerializeField] GameObject dialogObject;
     Dialog dialog;
+
     [SerializeField] GameObject speechBubble;
     [SerializeField] GameObject promptObject;
+
+    [SerializeField] UnityEvent dialogEvent;
 
     private void OnEnable()
     {
@@ -53,8 +57,7 @@ public class DialogTrigger : MonoBehaviour
 
                     if (dialog.isEventDialog())
                     {
-                        string eventName = dialog.eventName();
-                        EventManager.Instance.invokeEvent(eventName);
+                        dialogEvent?.Invoke();
                     }
                 }
 

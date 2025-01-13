@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f88259111a5a84d99130ced535b993, type: 3}
+  m_Name: Upgrade Man  Move
+  m_EditorClassIdentifier: 
+  lines:
+  - Golly moving light that might be a hassle
+  - Let me look at your components for a bit
+  - You know my brothers can fix broken components like this
+  - But they can only fix one specific thing because we are programmed that way
+  - Anyway this should do it for now, you should check your menu
+  isEventDialog: 1

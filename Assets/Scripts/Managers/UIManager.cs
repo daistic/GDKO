@@ -22,9 +22,11 @@ public class UIManager : MonoBehaviour
 
     [Header("Components Toggle")]
     [SerializeField] ComponentTogglesHandler componentsTogglesHandler;
+    [SerializeField] Toggle sidewaysComponent;
     [SerializeField] Toggle moveRightComponent;
     [SerializeField] Toggle moveLeftComponent;
     [SerializeField] Toggle JumpComponent;
+    [SerializeField] Toggle swordComponent;
 
     [Header("Texts")]
     [SerializeField] TextMeshProUGUI memSlotText;
@@ -55,10 +57,22 @@ public class UIManager : MonoBehaviour
         handleMemSlot(moveLeftComponent.isOn);
     }
 
+    public void toggleMoveSideways()
+    {
+        GameManager.Instance.playerController.handleMoveSideways(sidewaysComponent.isOn);
+        handleMemSlot(sidewaysComponent.isOn);
+    }
+
     public void toggleJump()
     {
         GameManager.Instance.playerController.handleJump(JumpComponent.isOn);
         handleMemSlot(JumpComponent.isOn);
+    }
+
+    public void toggleSword()
+    {
+        GameManager.Instance.playerController.handleSword(swordComponent.isOn);
+        handleMemSlot(swordComponent.isOn);
     }
 
     private void handleMemSlot(bool isToggleOn)
@@ -112,28 +126,55 @@ public class UIManager : MonoBehaviour
     }
 
     public void gotMoveLeftComponent()
-    { 
+    {
         moveLeftComponent.gameObject.SetActive(true);
+        componentsTogglesHandler.toggles.Add(moveLeftComponent);
+        checkMemSlot(moveLeftComponent);
     }
 
     public void gotJumpComponent()
     {
         JumpComponent.gameObject.SetActive(true);
+        componentsTogglesHandler.toggles.Add(JumpComponent);
+        checkMemSlot(JumpComponent);
     }
 
-    public void turnOnMoveRight()
+    public void gotSwordComponent()
     {
+        swordComponent.gameObject.SetActive(true);
+        componentsTogglesHandler.toggles.Add(swordComponent);
+        checkMemSlot(swordComponent);
+    }
+
+
+    private void checkMemSlot(Toggle componentToggle)
+    {
+        if (GameManager.Instance.currentMemSlot == 0)
+        {
+            componentToggle.interactable = false;
+        }
+    }
+
+    public void grantedMoveRight()
+    {
+        moveRightComponent.gameObject.SetActive(true);
+        componentsTogglesHandler.toggles.Add(moveRightComponent);
         moveRightComponent.isOn = true;
+        checkMemSlot(moveRightComponent);
     }
 
-    public List<Toggle> getAllToggles()
+    public void upgradeToMoveSideways()
     {
-        List<Toggle> toggles = new List<Toggle>();
+        moveRightComponent.isOn = false;
+        moveRightComponent.gameObject.SetActive(false);
+        componentsTogglesHandler.toggles.Remove(moveRightComponent);
 
-        toggles.Add(moveRightComponent);
-        toggles.Add(moveLeftComponent);
-        toggles.Add(JumpComponent);
+        moveLeftComponent.isOn = false;
+        moveLeftComponent.gameObject.SetActive(false);
+        componentsTogglesHandler.toggles.Remove(moveLeftComponent);
 
-        return toggles;
+        sidewaysComponent.gameObject.SetActive(true);
+        componentsTogglesHandler.toggles.Add(sidewaysComponent);
+        checkMemSlot(sidewaysComponent);
     }
 }

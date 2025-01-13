@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +16,11 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Bool")]
     [SerializeField] bool isMovingRight;
     [SerializeField] bool isMovingLeft;
+
+    [Header("Sword")]
+    [SerializeField] GameObject sword;
+    [SerializeField] float swordAttackDelay = 2f;
+    float swordNextAttack = 0;
 
     [Header("Layers")]
     [SerializeField] LayerMask platform;
@@ -95,6 +102,33 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void SwordAttack(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            if (swordNextAttack < Time.time)
+            {      
+                Coroutine showingSword = StartCoroutine(swordTime());
+                swordNextAttack = Time.time + swordAttackDelay;
+            }
+        }
+    }
+
+    private IEnumerator swordTime()
+    {
+        BoxCollider2D swordCollider = sword.GetComponent<BoxCollider2D>();
+
+        swordCollider.enabled = true;
+        sword.transform.position = this.transform.position + new Vector3(1.3f, 0, 0);
+        sword.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        yield return new WaitForSeconds(2f);
+
+        swordCollider.enabled = false;
+        sword.transform.position = this.transform.position;
+        sword.transform.rotation = Quaternion.Euler(0, 0, 45);
+    }
+
     private void OpenComponentMenu(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
@@ -133,6 +167,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void handleMoveSideways(bool isMoveSidewaysActivated)
+    {
+        if (isMoveSidewaysActivated)
+        {
+            playerInput.Player.RArrowKey.performed += MoveRight;
+            playerInput.Player.RArrowKey.canceled += MoveRight;
+            playerInput.Player.LArrowKey.performed += MoveLeft;
+            playerInput.Player.LArrowKey.canceled += MoveLeft;
+        }
+
+        else
+        {
+            playerInput.Player.RArrowKey.performed -= MoveRight;
+            playerInput.Player.RArrowKey.canceled -= MoveRight;
+            playerInput.Player.LArrowKey.performed -= MoveLeft;
+            playerInput.Player.LArrowKey.canceled -= MoveLeft;
+        }
+    }
+
     public void handleJump(bool isJumpActivated)
     {
         if (isJumpActivated)
@@ -143,6 +196,21 @@ public class PlayerController : MonoBehaviour
         else
         {
             playerInput.Player.UArrowKey.performed -= Jump;
+        }
+    }
+
+    public void handleSword(bool isSwordActivated)
+    {
+        if (isSwordActivated)
+        {
+            sword.SetActive(true);
+            playerInput.Player.ZKey.performed += SwordAttack;
+        }
+
+        else
+        {
+            sword.SetActive(false);
+            playerInput.Player.ZKey.performed -= SwordAttack;
         }
     }
 }

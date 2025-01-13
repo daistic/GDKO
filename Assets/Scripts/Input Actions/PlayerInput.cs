@@ -71,6 +71,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ZKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""fb4f4578-2a8f-4f2c-9c9e-786534d02fbe"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -128,6 +137,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""QKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce80bb37-5d7e-46e8-b284-461bfdd2f280"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -141,6 +161,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_LArrowKey = m_Player.FindAction("LArrowKey", throwIfNotFound: true);
         m_Player_UArrowKey = m_Player.FindAction("UArrowKey", throwIfNotFound: true);
         m_Player_QKey = m_Player.FindAction("QKey", throwIfNotFound: true);
+        m_Player_ZKey = m_Player.FindAction("ZKey", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -212,6 +233,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LArrowKey;
     private readonly InputAction m_Player_UArrowKey;
     private readonly InputAction m_Player_QKey;
+    private readonly InputAction m_Player_ZKey;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -221,6 +243,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @LArrowKey => m_Wrapper.m_Player_LArrowKey;
         public InputAction @UArrowKey => m_Wrapper.m_Player_UArrowKey;
         public InputAction @QKey => m_Wrapper.m_Player_QKey;
+        public InputAction @ZKey => m_Wrapper.m_Player_ZKey;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -245,6 +268,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @QKey.started += instance.OnQKey;
             @QKey.performed += instance.OnQKey;
             @QKey.canceled += instance.OnQKey;
+            @ZKey.started += instance.OnZKey;
+            @ZKey.performed += instance.OnZKey;
+            @ZKey.canceled += instance.OnZKey;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -264,6 +290,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @QKey.started -= instance.OnQKey;
             @QKey.performed -= instance.OnQKey;
             @QKey.canceled -= instance.OnQKey;
+            @ZKey.started -= instance.OnZKey;
+            @ZKey.performed -= instance.OnZKey;
+            @ZKey.canceled -= instance.OnZKey;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -288,5 +317,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnLArrowKey(InputAction.CallbackContext context);
         void OnUArrowKey(InputAction.CallbackContext context);
         void OnQKey(InputAction.CallbackContext context);
+        void OnZKey(InputAction.CallbackContext context);
     }
 }

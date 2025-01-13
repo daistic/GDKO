@@ -49,11 +49,6 @@ public class Dialog : MonoBehaviour
         return dialogScript.getIsEventDialog();
     }
 
-    public string eventName()
-    {
-        return dialogScript.getEventName();
-    }
-
     private IEnumerator TypeText(string text)
     {
         dialogText.text = "";

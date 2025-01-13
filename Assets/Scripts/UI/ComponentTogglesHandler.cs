@@ -4,12 +4,7 @@ using System.Collections.Generic;
 
 public class ComponentTogglesHandler : MonoBehaviour
 {
-    [SerializeField] List<Toggle> toggles = new List<Toggle>();
-
-    private void Start()
-    {
-        toggles = UIManager.Instance.getAllToggles();
-    }
+    public List<Toggle> toggles = new List<Toggle>();
 
     public void maxMemSlotReached()
     {
