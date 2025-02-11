@@ -19,4 +19,10 @@ public class ButtonTrigger : MonoBehaviour
             this.transform.position -= new Vector3(0, buttonPressedDistance, 0);
         }
     }
+
+    public void activateDoor()
+    {
+        doorAnimator.enabled = true;
+        this.transform.position -= new Vector3(0, buttonPressedDistance, 0);
+    }
 }

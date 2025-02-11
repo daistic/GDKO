@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
@@ -27,10 +26,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] Toggle moveLeftComponent;
     [SerializeField] Toggle JumpComponent;
     [SerializeField] Toggle swordComponent;
+    [SerializeField] Toggle shootComponent;
 
     [Header("Texts")]
     [SerializeField] TextMeshProUGUI memSlotText;
     [SerializeField] TextMeshProUGUI componentsExplanation;
+
+    private void Start()
+    {
+        componentsTogglesHandler.startCheck();
+    }
 
     public void toggleComponentsMenu()
     {
@@ -75,6 +80,12 @@ public class UIManager : MonoBehaviour
         handleMemSlot(swordComponent.isOn);
     }
 
+    public void toggleShoot()
+    {
+        GameManager.Instance.playerController.handleShoot(shootComponent.isOn);
+        handleMemSlot(shootComponent.isOn);
+    }
+
     private void handleMemSlot(bool isToggleOn)
     {
         if (isToggleOn)
@@ -94,11 +105,11 @@ public class UIManager : MonoBehaviour
         if (GameManager.Instance.currentMemSlot > 0)
         {
             changeMemSlotText(--GameManager.Instance.currentMemSlot);
-        }
 
-        if (GameManager.Instance.currentMemSlot == 0)
-        {
-            componentsTogglesHandler.maxMemSlotReached();
+            if (GameManager.Instance.currentMemSlot <= 0)
+            {
+                componentsTogglesHandler.maxMemSlotReached();
+            }
         }
     }
 

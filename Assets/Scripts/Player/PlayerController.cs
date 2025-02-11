@@ -22,6 +22,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float swordAttackDelay = 2f;
     float swordNextAttack = 0;
 
+    [Header("Shoot")]
+    [SerializeField] GameObject bullet;
+    [SerializeField] float shootCooldown = 1.5f;
+    float nextShot = 0;
+
     [Header("Layers")]
     [SerializeField] LayerMask platform;
 
@@ -129,6 +134,18 @@ public class PlayerController : MonoBehaviour
         sword.transform.rotation = Quaternion.Euler(0, 0, 45);
     }
 
+    private void Shoot(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            if (nextShot < Time.time)
+            {
+                Instantiate(bullet, this.transform.position, Quaternion.identity);
+                nextShot = Time.time + shootCooldown;
+            }            
+        }
+    }
+
     private void OpenComponentMenu(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
@@ -211,6 +228,19 @@ public class PlayerController : MonoBehaviour
         {
             sword.SetActive(false);
             playerInput.Player.ZKey.performed -= SwordAttack;
+        }
+    }
+
+    public void handleShoot(bool isShootActivated)
+    {
+        if (isShootActivated)
+        {
+            playerInput.Player.Shoot.performed += Shoot;
+        }
+
+        else
+        {
+            playerInput.Player.Shoot.performed -= Shoot;
         }
     }
 }

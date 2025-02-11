@@ -12,6 +12,7 @@ public class ComponentTogglesHandler : MonoBehaviour
         {
             if (!toggles[i].isOn)
             {
+                Debug.Log("test");
                 toggles[i].interactable = false;
             }
         }
@@ -19,9 +20,25 @@ public class ComponentTogglesHandler : MonoBehaviour
 
     public void returnTogglesState()
     {
-        for (int i = 0;i < toggles.Count; i++)
+        for (int i = 0; i < toggles.Count; i++)
         {
             toggles[i].interactable = true;
+        }
+    }
+
+    public void startCheck()
+    {
+        for (int i = 0; i < toggles.Count; i++)
+        {
+            if (toggles[i].isOn)
+            {
+                toggles[i].onValueChanged?.Invoke(toggles[i].isOn);
+            }
+        }
+
+        if (GameManager.Instance.currentMemSlot <= 0)
+        {
+            maxMemSlotReached();
         }
     }
 }
