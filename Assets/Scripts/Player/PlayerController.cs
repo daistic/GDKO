@@ -140,7 +140,8 @@ public class PlayerController : MonoBehaviour
         {
             if (nextShot < Time.time)
             {
-                Instantiate(bullet, this.transform.position, Quaternion.identity);
+                BoxCollider2D boxCollider2D = GetComponent<BoxCollider2D>();
+                Instantiate(bullet, transform.position + new Vector3(0, boxCollider2D.bounds.extents.y, 0), Quaternion.identity);
                 nextShot = Time.time + shootCooldown;
             }            
         }
