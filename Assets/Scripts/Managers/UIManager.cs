@@ -174,6 +174,12 @@ public class UIManager : MonoBehaviour
         checkMemSlot(moveRightComponent);
     }
 
+    public void grantedShoot()
+    {
+        shootComponent.gameObject.SetActive(true);
+        componentsTogglesHandler.toggles.Add(shootComponent);
+    }
+
     public void upgradeToMoveSideways()
     {
         moveRightComponent.isOn = false;

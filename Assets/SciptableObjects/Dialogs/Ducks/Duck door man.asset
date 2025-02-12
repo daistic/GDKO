@@ -20,6 +20,6 @@ MonoBehaviour:
   - are you insisting to proceed?
   - your determination might be just what we need...
   - ok, i shall give you a power that might be useful
-  - be sure to check the menu
+  - 'be sure to check the menu with [Q]'
   - good luck in there...
   isEventDialog: 1

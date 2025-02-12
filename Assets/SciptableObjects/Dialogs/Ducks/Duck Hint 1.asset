@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - Oh no something bad happened...
-  - Someone must have touch the 'thing'
-  - everybody knows you should not touch the 'thing'
+  - Someone must have touch the relic
+  - everybody knows you should not touch the relic
   - 'anyway just remember you can open the menu with [Q]'
   - just like the game from the first round
   isEventDialog: 0
