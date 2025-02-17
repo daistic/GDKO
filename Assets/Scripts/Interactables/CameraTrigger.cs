@@ -22,12 +22,12 @@ public class CameraTrigger : MonoBehaviour
 
             if (currentCamera == defaultCamera)
             {
-                newCamera.Prioritize();
+                newCamera.Priority.Value = 1;
             }
 
             else
             {
-                defaultCamera.Prioritize();
+                newCamera.Priority.Value = 0;
             }
         }
     }
